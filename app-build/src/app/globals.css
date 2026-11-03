@@ -1,0 +1,193 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════════
+   MATAAM SHINWARI — Design System
+   Modern Luxury × Desi Heritage × Shinwari Identity
+   ═══════════════════════════════════════════════════════════ */
+
+@theme inline {
+  /* ─── Color Tokens ─── */
+  --color-cream: #F7F1E5;
+  --color-charcoal: #252321;
+  --color-flame: #E85B27;
+  --color-maroon: #8E2026;
+  --color-beige: #E8D8BD;
+  --color-warm-white: #FFFDF8;
+  --color-text-main: #292522;
+
+  /* ─── Flame shades ─── */
+  --color-flame-light: #f0845a;
+  --color-flame-dark: #c94a1d;
+
+  /* ─── Maroon shades ─── */
+  --color-maroon-light: #a8323a;
+  --color-maroon-dark: #6a181d;
+
+  /* ─── Font Families (Tailwind v4 utility classes) ─── */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-playfair), Georgia, serif;
+  --font-accent: var(--font-cormorant), Georgia, serif;
+  --font-ui: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+
+  /* These generate: font-gulzar, font-playfair, font-cormorant, font-manrope, font-nastaliq, font-inter */
+  --font-family-gulzar: var(--font-gulzar), "Noto Nastaliq Urdu", serif;
+  --font-family-nastaliq: var(--font-noto-nastaliq), "Noto Nastaliq Urdu", serif;
+  --font-family-playfair: var(--font-playfair), Georgia, serif;
+  --font-family-cormorant: var(--font-cormorant), Georgia, serif;
+  --font-family-manrope: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-family-inter: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* ─── Base Styles ─── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-text-main);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ─── Selection Color ─── */
+::selection {
+  background-color: var(--color-flame);
+  color: var(--color-warm-white);
+}
+
+::-moz-selection {
+  background-color: var(--color-flame);
+  color: var(--color-warm-white);
+}
+
+/* ─── Scrollbar Styling ─── */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-beige);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-maroon);
+}
+
+/* ─── Urdu Text Utilities ─── */
+.urdu-text {
+  font-family: var(--font-gulzar);
+  direction: rtl;
+  line-height: 2.2;
+}
+
+.urdu-heading {
+  font-family: var(--font-gulzar);
+  direction: rtl;
+  line-height: 1.8;
+}
+
+/* ─── Flame Glow Animation ─── */
+@keyframes flameGlow {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.15);
+  }
+}
+
+.flame-glow {
+  animation: flameGlow 3s ease-in-out infinite;
+}
+
+/* ─── Traditional Border Pattern ─── */
+.traditional-border-top {
+  border-top: 1px solid var(--color-beige);
+  position: relative;
+}
+
+.traditional-border-top::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 8px;
+  background: var(--color-cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.traditional-border-top::after {
+  content: '◆';
+  position: absolute;
+  top: -9px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--color-flame);
+  font-size: 10px;
+  background: var(--color-cream);
+  padding: 0 8px;
+}
+
+/* ─── Shimmer effect for premium feel ─── */
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.text-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-charcoal) 0%,
+    var(--color-flame) 50%,
+    var(--color-charcoal) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s ease-in-out infinite;
+}
+
+/* ─── Image overlay gradient ─── */
+.img-overlay {
+  position: relative;
+}
+
+.img-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(37, 35, 33, 0.3) 60%,
+    rgba(37, 35, 33, 0.7) 100%
+  );
+  pointer-events: none;
+}
+
+/* ─── Warm paper texture (very subtle) ─── */
+.paper-texture {
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(232, 216, 189, 0.3) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(232, 91, 39, 0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(142, 32, 38, 0.03) 0%, transparent 50%);
+}
