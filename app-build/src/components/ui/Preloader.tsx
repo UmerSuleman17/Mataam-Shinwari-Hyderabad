@@ -1,11 +1,14 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useSyncExternalStore } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 
+const subscribe = () => () => {};
+
 export default function Preloader() {
   const [loading, setLoading] = useState(true);
+  const hydrated = useSyncExternalStore(subscribe, () => true, () => false);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -16,7 +19,7 @@ export default function Preloader() {
 
   return (
     <AnimatePresence>
-      {loading && (
+      {hydrated && loading && (
         <motion.div
           key="preloader"
           initial={{ y: 0 }}

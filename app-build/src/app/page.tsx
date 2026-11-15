@@ -14,7 +14,7 @@ export default function Home() {
     <>
       <Preloader />
       <Navbar />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <Hero />
         <BrandIntro />
         <SignatureDishes />

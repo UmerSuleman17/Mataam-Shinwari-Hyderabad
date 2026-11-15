@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -10,7 +10,7 @@ import { Menu, X } from "lucide-react";
 const navLinks = [
   { label: "Home", href: "/#hero", isSection: true },
   { label: "Our Story", href: "/#story", isSection: true },
-  { label: "Signature Menu", href: "/menu", isSection: false },
+  { label: "Menu", href: "/menu", isSection: false },
   { label: "Gallery", href: "/#gallery", isSection: true },
   { label: "Visit Us", href: "/#visit", isSection: true },
 ];
@@ -18,6 +18,8 @@ const navLinks = [
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
   const { scrollY } = useScroll();
   const pathname = usePathname();
   const isHome = pathname === "/";
@@ -27,15 +29,36 @@ export default function Navbar() {
   });
 
   useEffect(() => {
-    if (isMobileOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
+    if (!isMobileOpen) return;
+    const menuButton = menuButtonRef.current;
+    document.body.style.overflow = "hidden";
+    menuRef.current?.querySelector<HTMLElement>('button')?.focus();
     return () => {
       document.body.style.overflow = "";
+      menuButton?.focus();
     };
   }, [isMobileOpen]);
+
+  const handleMenuKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === "Escape") {
+      setIsMobileOpen(false);
+    }
+    if (event.key === "Tab") {
+      const items = menuRef.current?.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled])'
+      );
+      if (!items?.length) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+  };
 
   const handleNavClick = (href: string) => {
     setIsMobileOpen(false);
@@ -57,6 +80,7 @@ export default function Navbar() {
 
   return (
     <>
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:bg-cream focus:text-charcoal focus:px-4 focus:py-3 focus:outline-2 focus:outline-maroon">Skip to main content</a>
       <motion.header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${
           showSolidBg
@@ -126,6 +150,7 @@ export default function Navbar() {
 
             {/* Mobile Menu Button */}
             <button
+              ref={menuButtonRef}
               onClick={() => setIsMobileOpen(!isMobileOpen)}
               className={`md:hidden p-2 transition-colors duration-300 ${
                 showSolidBg ? "text-charcoal" : "text-warm-white"
@@ -142,6 +167,12 @@ export default function Navbar() {
       <AnimatePresence>
         {isMobileOpen && (
           <motion.div
+            ref={menuRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Main menu"
+            tabIndex={-1}
+            onKeyDown={handleMenuKeyDown}
             className="fixed inset-0 z-50 bg-charcoal"
             initial={{ opacity: 0, x: "100%" }}
             animate={{ opacity: 1, x: 0 }}

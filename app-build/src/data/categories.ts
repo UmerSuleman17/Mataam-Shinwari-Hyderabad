@@ -7,7 +7,7 @@ export interface Category {
 
 export const menuCategories: Category[] = [
   {
-    id: 'shinwari-specials',
+    id: 'shinwari',
     urduName: 'شنواری اسپیشل',
     englishName: 'Shinwari Specials',
     icon: '🔥',

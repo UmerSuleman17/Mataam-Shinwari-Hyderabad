@@ -112,10 +112,10 @@ export default function VisitUs() {
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 0.6, delay: 0.5, ease: [0.25, 1, 0.5, 1] }}
           >
-            <a href={restaurantInfo.social.instagram} target="_blank" rel="noopener noreferrer" className="text-warm-white/50 hover:text-flame transition">
+            <a href={restaurantInfo.social.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-warm-white/50 hover:text-flame transition">
               <InstagramIcon />
             </a>
-            <a href={restaurantInfo.social.facebook} target="_blank" rel="noopener noreferrer" className="text-warm-white/50 hover:text-flame transition">
+            <a href={restaurantInfo.social.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-warm-white/50 hover:text-flame transition">
               <FacebookIcon />
             </a>
           </motion.div>

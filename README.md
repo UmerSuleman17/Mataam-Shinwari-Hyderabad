@@ -56,3 +56,11 @@ A premium, modern restaurant landing page and digital brand presence for **Mataa
 
 Developed with passion by **Wisdom Tech**.  
 All rights reserved © 2026 **Mataam Shinwari**.
+
+## Guest feedback setup
+
+The feedback form is available at `/feedback?code=...` when `FEEDBACK_ACCESS_CODE` and `FEEDBACK_STORE_NAME` are set as server-side Netlify environment variables. Use different store names and access codes for production and deploy previews. Generate a long random value, configure it for the intended deployment context, and put the full HTTPS URL in the restaurant QR code. Do not commit the value or put a link to it on the public site. Replacing the value invalidates existing QR codes.
+
+A shared QR URL can be copied; it does not verify a visit. Bill IDs are recorded as supplied, not verified. Reviews are published immediately. The public API omits bill IDs, but customers should avoid including private details in the public review text. Staff with access to the Netlify project can inspect the configured feedback store under Data & Storage > Blobs, including bill IDs. Restrict project access accordingly.
+
+Netlify Blobs is required for storage; the feedback API returns an error outside a configured Netlify environment. Test with an isolated Netlify deployment or Netlify Dev, not a production store: site-wide stores are shared across deploys. Public reads show up to 50 recent submissions. Netlify edge rules limit feedback page requests and feedback POST requests per IP and domain; verify that Netlify accepts both rules in the deploy log. Enforcement may be delayed and shared restaurant networks may reach the limit. Moderation is not yet implemented; assess abuse protection before publication.

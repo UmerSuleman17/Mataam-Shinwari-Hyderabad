@@ -44,6 +44,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${fontVariables} antialiased`}>
       <body className="min-h-screen bg-cream text-text-main">
+        <noscript><style>{`[style*="opacity:0"] { opacity: 1 !important; transform: none !important; } header[style] { transform: none !important; }`}</style></noscript>
         {children}
       </body>
     </html>
