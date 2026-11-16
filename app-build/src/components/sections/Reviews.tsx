@@ -3,8 +3,8 @@
 import { motion } from 'framer-motion';
 import SectionHeading from '@/components/ui/SectionHeading';
 import ReviewCard from '@/components/ui/ReviewCard';
+import GuestFeedback from '@/components/feedback/GuestFeedback';
 import { reviews } from '@/data/reviews';
-import { restaurantInfo } from '@/data/restaurant';
 import { Star, StarHalf } from 'lucide-react';
 
 const containerVariants = {
@@ -57,6 +57,7 @@ export default function Reviews() {
             </motion.div>
           ))}
         </motion.div>
+        <GuestFeedback />
       </div>
     </section>
   );

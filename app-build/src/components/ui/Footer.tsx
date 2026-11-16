@@ -22,10 +22,10 @@ const FacebookIcon = () => (
 
 const footerLinks = [
   { label: "Home", href: "/" },
-  { label: "Signature Menu", href: "/menu" },
-  { label: "Our Story", href: "#story" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "Visit Us", href: "#visit" },
+  { label: "Menu", href: "/menu" },
+  { label: "Our Story", href: "/#story" },
+  { label: "Gallery", href: "/#gallery" },
+  { label: "Visit Us", href: "/#visit" },
 ];
 
 export default function Footer() {

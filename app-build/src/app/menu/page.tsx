@@ -5,8 +5,8 @@ import Footer from '@/components/ui/Footer';
 import MenuContent from '@/components/sections/MenuContent';
 
 export const metadata: Metadata = {
-  title: 'Signature Menu | Mataam Shinwari',
-  description: 'Explore our curated selection of signature Shinwari dishes...',
+  title: 'Menu | Mataam Shinwari',
+  description: 'Explore the Mataam Shinwari menu, from karahi and mandi to BBQ, drinks and desserts.',
 };
 
 export default function MenuPage() {
@@ -14,7 +14,7 @@ export default function MenuPage() {
     <div className="bg-cream min-h-screen">
       <Navbar />
       
-      <main>
+      <main id="main-content" tabIndex={-1}>
         {/* Hero Banner */}
         <section className="relative h-[40vh] md:h-[50vh] bg-charcoal flex items-center justify-center">
           <Image
@@ -31,7 +31,7 @@ export default function MenuPage() {
               ہمارے خاص پکوان
             </h1>
             <h2 className="font-playfair text-xl md:text-2xl text-warm-white/70 tracking-wider uppercase mt-4">
-              Our Signature Selection
+              Our Menu
             </h2>
             <div className="w-24 h-[1px] bg-flame/50 mt-6" />
           </div>
